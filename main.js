@@ -1,83 +1,81 @@
-// 1. Declaramos constantes, variables y array de productos
-const PRODUCTOS = [
+// Simulador de tienda 
+// Agregar productos y sus propiedades
+// Generar alertas y prompts 1.- bienvenida  2.- vean el catalogo de productos, 3.- agregar los productos seleccionados a un carrito de compras , 4.- ver los articulos seleccionados en el carrito de compras con precio y precio total, 5.- editar carrito de compras y 6.- finalizar compra con agradecimiento 7.-reinicio
+
+const products = [
     { 
-        nombre: "La Sportiva Solution", 
-        precio: 120, 
-        tipo: "Boulder", 
-        talla: [38, 39, 40, 41, 42] 
+        name: "La Sportiva Solution", 
+        price: 120, 
+        type: "Boulder", 
+        size: [38, 39, 40, 41, 42] 
     },
     { 
-        nombre: "Scarpa Instinct VS", 
-        precio: 150, 
-        tipo: "Deportivo", 
-        talla: [37, 38, 39, 40, 41] 
+        name: "Scarpa Instinct VS", 
+        price: 150, 
+        type: "Deportivo", 
+        size: [37, 38, 39, 40, 41] 
     },
     { 
-        nombre: "Five Ten Anasazi", 
-        precio: 100, 
-        tipo: "Trad", 
-        talla: [38, 39, 40, 41, 42] 
+        name: "Five Ten Anasazi", 
+        price: 100, 
+        type: "Trad", 
+        size: [38, 39, 40, 41, 42] 
     },
     { 
-        nombre: "Evolv Shaman", 
-        precio: 130, 
-        tipo: "Boulder", 
-        talla: [39, 40, 41, 42, 43] 
+        name: "Evolv Shaman", 
+        price: 130, 
+        type: "Boulder", 
+        size: [39, 40, 41, 42, 43] 
     },
     { 
-        nombre: "Butora Acro", 
-        precio: 110, 
-        tipo: "Deportivo", 
-        talla: [37, 38, 39, 40, 41] 
+        name: "Butora Acro", 
+        price: 110, 
+        type: "Deportivo", 
+        size: [37, 38, 39, 40, 41] 
     }
 ];
-let carrito = [];
 
-// 2. Función para mostrar el listado de productos
-function mostrarProductos() {
-    let mensaje = "Productos de Climbing Shoes:\n\n";
-    PRODUCTOS.forEach((producto, index) => {
-        mensaje += `${index + 1}. ${producto.nombre} - Tipo: ${producto.tipo} - Precio: $${producto.precio}\n`;
+function showProducts() {
+    let message = "Productos de Climbing Shoes:\n\n";
+    products.forEach((product, index) => {
+        message += `${index + 1}. ${product.name} - Tipo: ${product.type} - Precio: $${product.price}\n`;
     });
-    mensaje += "\nSeleccione el número del producto que desea agregar al carrito.";
-    return mensaje;
+    message += "\n Para agregar sus productos al carrito regrese al menú principal y seleccione opción 2.";
+    alert(message);
+
 }
 
-// 3. Función para seleccionar un producto y añadirlo al carrito
-function seleccionarProducto() {
-    let productoSeleccionado = prompt(mostrarProductos());
-
-    if (productoSeleccionado < 1 || productoSeleccionado > PRODUCTOS.length) {
-        alert("Selección inválida. Intenta de nuevo.");
-        return;
-    }
-
-    const producto = PRODUCTOS[productoSeleccionado - 1];
-    let detalles = `Seleccionaste: ${producto.nombre}\nPrecio: $${producto.precio}\nTipo: ${producto.tipo}\n`;
-    detalles += "Tallas disponibles: " + producto.talla.join(", ");
-    
-    alert(detalles);
-
-    // Confirmar agregar al carrito
-    if (confirm(`¿Quieres añadir ${producto.nombre} a tu carrito?`)) {
-        let tallaElegida = prompt(`¿Qué talla deseas? (Opciones: ${producto.talla.join(", ")})`);
-        
-        if (producto.talla.includes(parseInt(tallaElegida))) {
-            carrito.push({ nombre: producto.nombre, precio: producto.precio, talla: tallaElegida });
-            alert(`¡${producto.nombre} en talla ${tallaElegida} añadido al carrito!`);
-        } else {
-            alert("Talla no disponible.");
+function initFunction() {
+    let flag = true
+    let option = Number(prompt("Bienvenido a la tienda de Climbing Shoes, seleccione la opción deseada:\n 1.-Ver catálogo\n 2.-Agregar productos \n 3.-ver Carrito de compras\n 4.-Editar carrito de compras\n 5.-Finalizar compra ")) 
+        while (flag == true) {
+            switch (option) {
+                case 1:
+                    // alert("Productos de Climbing Shoes:\n"+ products)
+                    showProducts();
+                    flag = confirm("¿Quieres seguir operando?")
+                break;
+                case 2:
+                    flag = confirm("¿Quieres seguir operando?")
+                break;
+                case 3:
+                    flag = confirm("¿Quieres seguir operando?")
+                break;
+                case 4:
+                    flag = confirm("¿Quieres seguir operando?")
+                break;
+                    
+            
+                default:
+                    alert("No existe esta opción")
+                    flag = confirm("¿Quieres seguir operando?")
+                break;
+            }
+            if(flag == true){
+                option = Number(prompt("Bienvenido a la tienda de Climbing Shoes, seleccione la opción deseada:\n 1.-Ver catálogo\n 2.-Agregar productos \n 3.-ver Carrito de compras\n 4.-Editar carrito de compras\n 5.-Finalizar compra ")) 
+            }
+            
         }
-    }
 }
 
-// 4. Función para ver el carrito de compras
-function verCarrito() {
-    if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-    } else {
-        let mensajeCarrito = "Tu carrito de compras:\n\n";
-        let total = 0;
-
-    } 
-} 
+initFunction()
